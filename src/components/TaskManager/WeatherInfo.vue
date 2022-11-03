@@ -176,6 +176,8 @@ export default {
   font-size: 70px;
   margin: 2px;
   height: 70px;
+  top: -15px;
+  position: relative;
 }
 
 .min-max {

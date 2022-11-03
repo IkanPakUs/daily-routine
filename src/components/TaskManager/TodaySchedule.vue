@@ -84,11 +84,11 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 export default {
   name: "TodaySchedule",
   setup() {
-    const task_list = reactive([
+    const task_list = ref([
       {
         id: "02",
         title: "Component create",
@@ -101,30 +101,6 @@ export default {
         repetitive: true,
         type: 1,
       },
-      {
-        id: "03",
-        title: "Istirahat",
-        description: "Chill",
-        time_start: "13:10",
-        time_end: "14:00",
-        deadline: null,
-        ongoing: true,
-        progress: 90,
-        repetitive: true,
-        type: 2,
-      },
-      {
-        id: "04",
-        title: "Tugas kalkulus",
-        description: "Jawab quis",
-        time_start: "14:00",
-        time_end: "15:00",
-        deadline: 1,
-        ongoing: false,
-        progress: 0,
-        repetitive: true,
-        type: 3,
-      },
     ]);
 
     const circumference = reactive({
@@ -132,6 +108,9 @@ export default {
     });
 
     onMounted(() => {
+      task_list.value = localStorage.schedules
+        ? JSON.parse(localStorage.schedules)
+        : [];
       circumference.value = 42 * 2 * Math.PI;
     });
 
